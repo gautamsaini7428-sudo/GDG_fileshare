@@ -1,0 +1,639 @@
+Build a complete, production-quality full-stack web application called:
+
+"USAR FileShare"
+
+This is a File-Sharing Platform for students of GGSIPU – University School of Automation and Robotics (USAR).
+
+IMPORTANT:
+Use the attached reference image as the project requirements specification. Implement ALL the requirements shown in it.
+
+==================================================
+1. OVERALL DESIGN
+==================================================
+
+Create a modern, premium university-tech style website.
+
+Theme:
+- GGSIPU / USAR inspired
+- Clean academic + modern technology aesthetic
+- White/light background with green as the primary accent
+- Dark text
+- Subtle glassmorphism where appropriate
+- Rounded cards
+- Soft shadows
+- Professional typography
+- Fully responsive on desktop, tablet and mobile
+
+Do NOT make it look like a generic file manager.
+It should feel like a real student portal designed specifically for USAR.
+
+Use smooth animations throughout the website:
+- Page transitions
+- Fade-in animations
+- Slide-up animations
+- Card hover animations
+- Button hover effects
+- Smooth navbar transitions
+- Animated file upload progress
+- Animated loading states
+- Skeleton loaders
+- Modal entrance/exit animations
+- Toast notifications
+- Smooth dropdown animations
+- Subtle background motion
+- Micro-interactions when uploading/deleting/downloading files
+
+Keep animations professional and smooth. Do NOT overuse flashy animations.
+
+Use Framer Motion or an equivalent animation library.
+
+==================================================
+2. FRONT PAGE / LANDING PAGE
+==================================================
+
+Create a beautiful landing page.
+
+Hero section:
+
+Left side:
+"USAR FileShare"
+
+Subtitle:
+"Securely store, manage and access your files."
+
+Supporting text:
+"A simple and secure file-sharing platform for the GGSIPU USAR community."
+
+Buttons:
+- Get Started
+- Login
+
+Right side:
+Display a large high-quality image of GGSIPU / USAR campus.
+
+IMPORTANT:
+Use an official/appropriate GGSIPU USAR campus image or an image supplied by me.
+Do NOT generate a fake university logo or fake campus building.
+If an official image is not available, create a visually clean image area with a clear placeholder so I can replace it later.
+
+Add a subtle animated effect around the campus image:
+- floating particles
+- soft gradient glow
+- slow parallax movement
+- slight image reveal animation
+
+Add a small badge:
+"Built for GGSIPU • USAR"
+
+Below the hero, create feature cards:
+
+1. Secure Storage
+"Keep your academic files safely stored."
+
+2. Easy Upload
+"Upload your files quickly and conveniently."
+
+3. Personal File Management
+"View, download and delete your own files."
+
+4. Access Control
+"Users can only access files belonging to them."
+
+Animate these cards when they enter the viewport.
+
+==================================================
+3. AUTHENTICATION
+==================================================
+
+Implement complete authentication.
+
+Pages:
+- Register
+- Login
+- Logout
+
+Registration fields:
+- Full Name
+- Email
+- Password
+- Confirm Password
+
+Login:
+- Email
+- Password
+
+Add proper validation.
+
+Show useful error messages such as:
+"Invalid email address"
+"Password is required"
+"Passwords do not match"
+"Invalid email or password"
+
+Use a secure authentication system.
+
+Preferred backend options:
+- Supabase Auth
+OR
+- Firebase Authentication
+
+Choose the option that integrates most cleanly with the file storage system.
+
+Never store plain-text passwords.
+
+Protect authenticated routes.
+
+Unauthenticated users should not be able to access the dashboard.
+
+==================================================
+4. USER DASHBOARD
+==================================================
+
+After login, redirect users to:
+
+/dashboard
+
+Create a professional dashboard.
+
+Top navbar:
+- USAR FileShare logo/name
+- Dashboard
+- My Files
+- Upload
+- User profile
+- Logout
+
+Dashboard should show:
+
+Welcome message:
+"Welcome back, [User Name]"
+
+Statistics cards:
+- Total Files
+- Storage Used
+- Recent Uploads
+
+Main sections:
+- Recent Files
+- Upload File
+- File Search
+
+Use animated dashboard cards.
+
+==================================================
+5. FILE UPLOAD
+==================================================
+
+Users must be able to upload files.
+
+Create a beautiful drag-and-drop upload component.
+
+Text:
+
+"Drag & Drop your files here"
+
+or
+
+"Browse Files"
+
+Show:
+- File name
+- File type
+- File size
+- Upload progress
+- Upload status
+
+Supported file types can include:
+PDF
+DOC
+DOCX
+PPT
+PPTX
+XLS
+XLSX
+PNG
+JPG
+JPEG
+ZIP
+TXT
+
+Implement file-size validation.
+
+Handle:
+- Invalid file types
+- File too large
+- Upload failure
+- Network errors
+
+Show animated upload progress.
+
+After successful upload:
+"File uploaded successfully."
+
+==================================================
+6. FILE LIST
+==================================================
+
+Create a My Files page.
+
+Display files in a modern table/card layout.
+
+Each file should show:
+
+- File icon
+- Filename
+- File type
+- File size
+- Upload date
+- Actions
+
+Actions:
+- Download
+- Delete
+
+Example:
+
+📄 Assignment.pdf
+PDF
+2.4 MB
+30 Sep 2026
+
+[Download] [Delete]
+
+Add confirmation before deleting:
+
+"Are you sure you want to delete this file?"
+
+Buttons:
+Cancel
+Delete
+
+Animate deletion smoothly.
+
+==================================================
+7. FILE SEARCH AND FILTERING
+==================================================
+
+Implement the bonus feature.
+
+Allow users to search their files by filename.
+
+Add filters:
+- File type
+- Date uploaded
+
+Add sorting:
+- Newest
+- Oldest
+- Name A-Z
+- Name Z-A
+
+Search should update smoothly without reloading the page.
+
+==================================================
+8. ACCESS CONTROL / SECURITY
+==================================================
+
+This is extremely important.
+
+A user must NEVER be able to access another user's files.
+
+Every file must belong to the authenticated user's user ID.
+
+Database structure should include something similar to:
+
+users
+files
+
+files:
+- id
+- user_id
+- file_name
+- file_type
+- file_size
+- storage_path
+- uploaded_at
+
+Every database query must verify the authenticated user's ID.
+
+Implement proper backend authorization/security rules.
+
+For Supabase:
+Use Row Level Security (RLS).
+
+Users should only be able to:
+- Read their own files
+- Upload their own files
+- Download their own files
+- Delete their own files
+
+They must NOT be able to:
+- Read another user's file metadata
+- Download another user's file
+- Delete another user's file
+- Modify another user's file
+
+Do not rely only on frontend checks.
+Enforce access control at the backend/database/storage level.
+
+==================================================
+9. DECISIONS.md
+==================================================
+
+Create a file:
+
+DECISIONS.md
+
+Document at least one important access-control decision.
+
+Example:
+
+# Access Control Decision
+
+Each uploaded file is associated with the authenticated user's unique user_id.
+
+Database Row Level Security ensures that users can only SELECT, INSERT and DELETE rows where user_id matches the currently authenticated user.
+
+Storage access is also restricted to the user's own storage path.
+
+This prevents one authenticated user from accessing another user's files even if they manually modify a request URL.
+
+==================================================
+10. ERROR HANDLING
+==================================================
+
+Handle all basic errors gracefully.
+
+Examples:
+
+- Invalid login
+- Registration failure
+- Unauthorized access
+- Invalid file type
+- File too large
+- Upload failure
+- Download failure
+- Delete failure
+- Network error
+- Missing file
+- Expired session
+
+Use attractive toast notifications instead of browser alert().
+
+Example:
+
+✓ File uploaded successfully
+
+✕ Upload failed
+
+⚠ You are not authorized to access this file.
+
+==================================================
+11. UI COMPONENTS
+==================================================
+
+Create reusable components:
+
+Navbar
+Sidebar
+Button
+FileCard
+FileTable
+FileUpload
+UploadProgress
+SearchBar
+FilterDropdown
+Modal
+ConfirmationModal
+Toast
+LoadingSpinner
+SkeletonLoader
+EmptyState
+UserMenu
+StatsCard
+
+Keep the code modular and organized.
+
+==================================================
+12. ANIMATIONS
+==================================================
+
+Animations are REQUIRED throughout the website.
+
+Use Framer Motion or equivalent.
+
+Landing page:
+- Hero text fade/slide in
+- Campus image reveal
+- Floating background elements
+- Feature cards stagger animation
+
+Dashboard:
+- Cards slide/fade in
+- File rows animate into view
+- Upload progress animation
+- Modal transitions
+
+Interactions:
+- Button hover
+- Card hover
+- Icon hover
+- Dropdown animation
+- Toast animation
+- Delete animation
+- Page transition
+
+Use subtle animation durations around 200–700ms.
+
+Avoid excessive spinning or distracting effects.
+
+==================================================
+13. RESPONSIVE DESIGN
+==================================================
+
+The website MUST work properly on:
+
+Desktop
+Laptop
+Tablet
+Mobile
+
+On mobile:
+- Convert navbar into mobile menu
+- Stack dashboard cards
+- Make file cards responsive
+- Make upload area responsive
+- Ensure tables don't overflow horizontally
+
+==================================================
+14. TECH STACK
+==================================================
+
+Preferred:
+
+Frontend:
+React / Next.js
+TypeScript
+Tailwind CSS
+Framer Motion
+
+Backend:
+Supabase
+
+Use:
+- Supabase Authentication
+- Supabase PostgreSQL
+- Supabase Storage
+- Row Level Security
+
+If Manus has a better integrated architecture, use it, but maintain the same functionality and security.
+
+==================================================
+15. DATABASE
+==================================================
+
+Create the required database schema.
+
+Table: files
+
+Fields:
+
+id
+user_id
+file_name
+file_type
+file_size
+storage_path
+uploaded_at
+
+Add appropriate indexes.
+
+Create RLS policies.
+
+Users should only access their own rows.
+
+==================================================
+16. STORAGE
+==================================================
+
+Create a storage bucket for uploaded files.
+
+Recommended structure:
+
+files/{user_id}/{file_id}/{filename}
+
+Ensure storage policies prevent users from accessing files belonging to other users.
+
+==================================================
+17. BONUS FEATURE
+==================================================
+
+Implement searchable files.
+
+Also add:
+- File type filters
+- Date filtering
+- Sorting
+- Optional shareable link functionality if it can be implemented securely
+
+If shareable links are implemented, make sure they don't accidentally expose private files.
+
+==================================================
+18. VISUAL DETAILS
+==================================================
+
+Use a polished green/white visual identity inspired by the attached requirements image.
+
+Primary accent:
+GGSIPU/USAR-inspired green
+
+Use:
+- White cards
+- Light gray backgrounds
+- Dark typography
+- Green buttons
+- Green highlights
+- Subtle gradients
+- Modern icons
+
+Do not make the interface overly colorful.
+
+Use Lucide icons or another clean icon library.
+
+==================================================
+19. FOOTER
+==================================================
+
+Create a professional footer.
+
+Include:
+
+USAR FileShare
+"Secure file management for the USAR community."
+
+Links:
+- Home
+- Dashboard
+- My Files
+- Upload
+- Privacy
+- About
+
+Add:
+
+"GGSIPU • University School of Automation and Robotics"
+
+==================================================
+20. FINAL REQUIREMENTS
+==================================================
+
+The final project must be a WORKING full-stack application, not just a visual prototype.
+
+Make sure:
+
+✓ Registration works
+✓ Login works
+✓ Logout works
+✓ Authentication persists
+✓ Protected routes work
+✓ File upload works
+✓ File listing works
+✓ File download works
+✓ File deletion works
+✓ Search works
+✓ Filtering works
+✓ Upload errors are handled
+✓ Unauthorized access is blocked
+✓ Users cannot access other users' files
+✓ Database is properly connected
+✓ Storage is properly connected
+✓ RLS/security policies are implemented
+✓ DECISIONS.md exists
+✓ Website is responsive
+✓ Animations work smoothly
+✓ Landing page is polished
+✓ GGSIPU/USAR campus image is present on the front page
+✓ No fake authentication
+✓ No hardcoded fake file data in the final version
+
+Before finishing, test the complete user flow:
+
+Register
+→ Login
+→ Dashboard
+→ Upload file
+→ View file
+→ Search file
+→ Download file
+→ Delete file
+→ Logout
+→ Login again
+
+Also test security:
+
+User A uploads a file.
+User B must NOT be able to view, download or delete User A's file.
+
+Fix all console errors and broken routes before completing the project.
+
+The final result should look like a real, deployable university file-sharing platform rather than a basic college assignment.
